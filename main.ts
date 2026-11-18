@@ -1,36 +1,78 @@
-// Front-page entrypoint for the 18 November 2026 news image.
+// News-image entry, 18 November 2026.
 //
-// The drawing itself lives in render.py (PIL). This file only works out
-// where the single output PNG belongs and hands the job to the painter.
-// Output goes to the platform directory when the platform provides one,
-// otherwise to the conventional /output location.
-import { spawnSync } from "node:child_process";
-import { existsSync, mkdirSync } from "node:fs";
-import { dirname, join } from "node:path";
-import { fileURLToPath } from "node:url";
+// The front page was already drawn during the build: render.py produced
+// entry.png, which sits next to this file. This entrypoint only carries
+// that finished image into the platform's output directory. It uses the
+// Node standard library alone and starts no other program, so it runs in
+// a bare container with nothing extra installed.
 
-const repoRoot = dirname(fileURLToPath(import.meta.url));
-const outDir = process.env.MAKEFUN_OUTPUT_DIR ?? "/output";
-const outFile = join(outDir, "entry.png");
+import { copyFileSync, existsSync, mkdirSync, statSync } from 'node:fs';
+import { dirname, join, resolve } from 'node:path';
+import { fileURLToPath } from 'node:url';
 
-mkdirSync(outDir, { recursive: true });
+const IMAGE_FILE = 'entry.png';
 
-const painter = spawnSync("python3", [join(repoRoot, "render.py"), outFile], {
-  cwd: repoRoot,
-  stdio: "inherit",
-  env: process.env,
-});
-
-if (painter.error) {
-  console.error("could not start render.py:", painter.error.message);
-  process.exit(1);
+// Directory holding this file, which is also where the rendered image lives.
+function repoDir(): string {
+  return dirname(fileURLToPath(import.meta.url));
 }
-if (painter.status !== 0) {
-  console.error(`render.py exited with status ${painter.status}`);
-  process.exit(painter.status ?? 1);
+
+// Where the platform wants the deliverable: its environment variable when
+// set, otherwise the conventional output location.
+function outputDir(): string {
+  const fromEnv = process.env.MAKEFUN_OUTPUT_DIR;
+  if (fromEnv && fromEnv.trim() !== '') {
+    return resolve(fromEnv);
+  }
+  return '/output';
 }
-if (!existsSync(outFile)) {
-  console.error("render.py finished but no entry.png appeared");
-  process.exit(1);
+
+function sourcePath(): string {
+  return join(repoDir(), IMAGE_FILE);
 }
-console.log(`front page written to ${outFile}`);
+
+function targetPath(): string {
+  return join(outputDir(), IMAGE_FILE);
+}
+
+function makeDir(path: string): void {
+  mkdirSync(path, { recursive: true });
+}
+
+function copyImage(from: string, to: string): void {
+  copyFileSync(from, to);
+}
+
+// Confirm the copy really landed and is the same size as the source.
+function checkCopy(from: string, to: string): number {
+  if (!existsSync(to)) {
+    throw new Error(`output image not found after copy: ${to}`);
+  }
+  const sourceBytes = statSync(from).size;
+  const copiedBytes = statSync(to).size;
+  if (copiedBytes !== sourceBytes) {
+    throw new Error(
+      `output image size mismatch: expected ${sourceBytes} bytes, got ${copiedBytes}`,
+    );
+  }
+  return copiedBytes;
+}
+
+// Fail fast with a clear message if the rendered image is missing.
+function requireSource(path: string): void {
+  if (!existsSync(path)) {
+    throw new Error(`rendered image not found next to the entrypoint: ${path}`);
+  }
+}
+
+function main(): void {
+  const from = sourcePath();
+  const to = targetPath();
+  requireSource(from);
+  makeDir(dirname(to));
+  copyImage(from, to);
+  const bytes = checkCopy(from, to);
+  console.log(`copied ${IMAGE_FILE} (${bytes} bytes) to ${to}`);
+}
+
+main();
