@@ -77,6 +77,74 @@ possible.
   arson attack on drone maker Threod Systems; the Kremlin denies it
   (Reuters, 17 Nov).
 
+## Front-page stories added for v2 (map numbers 7–13)
+
+Researched 2026-11-18 ~09:30 WIB (02:30 UTC). Same date discipline as
+above: every story is an event of Wednesday 18 November 2026, or a
+continuing state of affairs on that day stated in the present tense.
+
+7. **Winter rain floods Gaza's tents** — Winter rain has flooded
+   tens of thousands of tents sheltering displaced Palestinians; the
+   UN migration agency warns of further hypothermia deaths without
+   more shelter supplies after a 9-month-old baby died of suspected
+   hypothermia, and the World Food Programme has cut food aid in
+   tent camps from one hot meal a day to one meal every two days;
+   1.7 million people remain displaced and 1.4 million face acute
+   hunger. Stated as the continuing Wednesday position. Sources:
+   Reuters (17 Nov); AsiaOne (published 18 Nov); UN Geneva press
+   briefing, 17 Nov (UN Web TV).
+8. **Drones kill 1,630 of Sudan's 2,230 civilian dead** — A UN
+   human rights office report counts over 2,230 confirmed civilian
+   deaths in the Sudan conflict from January to the end of October
+   2026, more than 1,630 of them killed by drones; Kordofan region
+   accounts for more than two-thirds of documented civilian
+   casualties. The report was presented at the UN Geneva briefing
+   and published in Wednesday editions. Sources: UN Geneva press
+   briefing, 17 Nov (UN Web TV); OHCHR report summary (18 Nov).
+9. **Australia sanctions West Bank settlers** — Australia on
+   Wednesday imposed sanctions on three Israeli individuals and
+   four organisations over illegal settlement expansion and
+   settler violence in the West Bank, a day after Britain
+   sanctioned eight settlement construction firms; among those
+   listed is Nachala leader Daniella Weiss. Sources: Reuters,
+   "Australia sanctions Israeli settlers, organisations over West
+   Bank expansion" (SYDNEY, Nov 18); BusinessWorld (18 Nov).
+10. **Anthropic prices its record IPO today** — Anthropic sets the
+    final price of its initial public offering on Wednesday
+    evening, ahead of Nasdaq trading under the ticker ANT on
+    Thursday 19 November: 825 million Class A shares at $70–$78,
+    raising up to about $64.4 billion at a fully diluted valuation
+    near $1.4 trillion, with books reported close to seven times
+    covered and bankers guiding to the top of the range or above.
+    Sources: Bloomberg via Memeburn (17 Nov); Anthropic S-1
+    filings; Money to the Masses; Trefis (17 Nov).
+11. **Voyager 1 reaches one light-day from Earth** — At 5:16 a.m.
+    EST on Wednesday 18 November, Voyager 1 becomes the first
+    human-made object to reach one light-day from Earth — about
+    16.1 billion miles (25.9 billion km); a radio signal now
+    needs a full 24 hours each way. Launched 5 September 1977,
+    the probe has two science instruments still operating.
+    Sources: NASA, "What Voyager Teaches Us From One Light-Day
+    Away"; Astronomy (17 Nov); IFLScience; Detroit Free Press.
+12. **Brussels seeks €45bn more for Ukraine** — The European
+    Commission presents a proposal on Wednesday for a €45 billion
+    loan to Ukraine, borrowed on capital markets against the EU
+    budget, covering about two-thirds of Kyiv's estimated €70
+    billion financing gap for 2027; Ukraine would repay only once
+    Russia pays war reparations, on the same terms as the earlier
+    €90 billion loan. Sources: Financial Times via UNN /
+    europesays (16 Nov); Agence Europe (16 Nov, "On Wednesday
+    18 November, the European Commission is expected to present
+    a proposal"); Kyiv Independent draft (17 Nov).
+13. **William and Kate meet Modi in Mumbai** — The Prince and
+    Princess of Wales meet Indian Prime Minister Narendra Modi in
+    Mumbai on Wednesday, the final day of their three-day visit,
+    after hosting Tuesday evening's Earthshot Prize ceremony at
+    the Jio World Convention Centre. Sources: Sky News via Q
+    Radio (17 Nov, "Kate and William will on Wednesday continue
+    their trip by meeting Indian Prime Minister Narendra Modi");
+    Bury Times (17 Nov).
+
 ## Deliberately excluded (verified as NOT 18 November news)
 
 - Quad leaders' meeting in Manila; Trump landing in Manila;
@@ -112,6 +180,24 @@ possible.
 - UK sanctions on Israeli settlement firms; Japan scrambles jets
   over Russian planes; Iran drones target US radar in Bahrain —
   all Tuesday 17 November (sibling entry's own SOURCES.md).
+- Germany and Norway fund $300m of Patriot interceptors for
+  Ukraine — announced Tuesday 17 November by Defence Minister
+  Pistorius in Brussels (defence-blog / journalsignal / 112.ua);
+  a Wednesday-dated mirror repost does not make it Wednesday news.
+- Goma drone strike killing UNICEF worker Karine Buisset — March
+  2026 (12 March, Uganda Online / UNICEF Thailand), NOT
+  18 November; it re-surfaced on Al Jazeera tag pages crawled
+  18 November.
+- Spain's first general strike in 14 years — Wednesday
+  11 November, not 18 November (Rivista Studio / Reuters); the
+  nationwide rail strike was Tuesday 17 November.
+- US loses measles elimination status — PAHO announced Tuesday
+  17 November (decision 13 November); 5,412 US cases in 2026
+  (Healthline / USA Today / CNN, 17 Nov).
+- Earthshot Prize ceremony in Mumbai — Tuesday evening
+  17 November (Hollywood Reporter India / USA Today); the
+  William–Kate–Modi meeting on Wednesday 18 November IS a v2
+  story (no. 13 above).
 
 ## Vignette art
 
@@ -119,4 +205,7 @@ The six panel illustrations are original flat-editorial images
 generated for this entry (see `assets/`); they contain no text. All
 wording in the image is rendered programmatically by `render.py`
 (PIL) so spelling is exact. No house or reference image from any
-other competition was copied.
+other competition was copied. Version 2 reuses the same six
+illustrations for the lead and the larger stories; the smaller
+stories are text-only headline cards, and the world map is drawn
+programmatically from coarse continent outlines.

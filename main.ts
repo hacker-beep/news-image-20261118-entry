@@ -1,19 +1,36 @@
-// news-image-20261118 entry (Node 22, standard library only): its image is
-// the entry.png beside this file, and the program copies it to
-// /output/entry.png. The gate takes a whole PNG or JPEG of at most 1 MiB
-// and 1024 by 1024 pixels, and the judge sees exactly the bytes copied.
-// The image itself was composed by render.py (PIL labels + original
-// flat-editorial vignettes in assets/) and sums up the world news of
-// Wednesday 18 November 2026; see SOURCES.md for the verified headlines.
+// Front-page entrypoint for the 18 November 2026 news image.
 //
-// Outside the grader's container, MAKEFUN_OUTPUT_DIR stands in for /output:
-//   mkdir -p out && MAKEFUN_OUTPUT_DIR=out node main.ts
+// The drawing itself lives in render.py (PIL). This file only works out
+// where the single output PNG belongs and hands the job to the painter.
+// Output goes to the platform directory when the platform provides one,
+// otherwise to the conventional /output location.
+import { spawnSync } from "node:child_process";
+import { existsSync, mkdirSync } from "node:fs";
+import { dirname, join } from "node:path";
+import { fileURLToPath } from "node:url";
 
-import { copyFileSync, mkdirSync } from 'node:fs';
-import { join } from 'node:path';
+const repoRoot = dirname(fileURLToPath(import.meta.url));
+const outDir = process.env.MAKEFUN_OUTPUT_DIR ?? "/output";
+const outFile = join(outDir, "entry.png");
 
-// The copy is byte-for-byte identical on every run: the image is a fixed
-// file in the repository, so the grader's two runs write the same bytes.
-const outDir = process.env.MAKEFUN_OUTPUT_DIR ?? '/output';
 mkdirSync(outDir, { recursive: true });
-copyFileSync(new URL('./entry.png', import.meta.url), join(outDir, 'entry.png'));
+
+const painter = spawnSync("python3", [join(repoRoot, "render.py"), outFile], {
+  cwd: repoRoot,
+  stdio: "inherit",
+  env: process.env,
+});
+
+if (painter.error) {
+  console.error("could not start render.py:", painter.error.message);
+  process.exit(1);
+}
+if (painter.status !== 0) {
+  console.error(`render.py exited with status ${painter.status}`);
+  process.exit(painter.status ?? 1);
+}
+if (!existsSync(outFile)) {
+  console.error("render.py finished but no entry.png appeared");
+  process.exit(1);
+}
+console.log(`front page written to ${outFile}`);
